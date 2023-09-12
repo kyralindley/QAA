@@ -1,0 +1,301 @@
+---------------
+Wed,Sep 6, 2023
+---------------
+1. I copied the repository onto my github and created QAA. Then, cloned this onto my talapas.
+To find my pair copy I went to /projects/bgmp/shared/Bi623/QAA_data_assignments.txt
+    Kyra    21_3G_both_S15_L008     34_4H_both_S24_L008
+To find my data, /projects/bgmp/shared/2017_sequencing/demultiplexed/
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008
+To get off login node 
+    '''srun --account=bgmp --partition=compute --time=3:00:00 --pty bash'''
+To load the module 
+    '''module spider fastqc'''
+    '''module load fastqc/0.11.5''
+Sanity check '''ml'''
+    0.11.5
+IN /projects/bgmp/shared/2017_sequencing/demultiplexed
+   (21_3G) fastqc --outdir /projects/bgmp/klindley/bioinfo/Bi623/QAA 21_3G_both_S15_L008_R1_001.fastq.gz 21_3G_both_S15_L008_R2_001.fastq.gz
+   ***MUST SECURE COPY ONTO COMPUTER****
+
+----------------
+Thur,Sep 7, 2023
+----------------
+I am helping Ike get his running! Using this command
+    ```module load fastqc/0.11.5```
+    ```fastqc --outdir /projects/bgmp/klindley/bioinfo/Bi623/QAA 21_3G_both_S15_L008_R1_001.fastq.gz 21_3G_both_S15_L008_R2_001.fastq.gz```
+Now, I want to begin looking at my data. I will begin by comparing 21_3G 
+QUESTIONS FOR THE REPORT - 21_3G   
+    *R1:
+    quality scores are high, lowerer around the start position, 
+    which is consistent with the per base N content which only peaks around the strt as well 
+    *R2:
+    larger error bars, which is consistent with the read 2 being on the sequencer longer
+    again, lower qscore towards the front, which is consistent with the per base n content graph 
+I am going to run phredencoding.py on 
+    '''./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R1_001.fastq.gz -o 21_3G_R1 -r 101'''
+    User time (seconds): 152.09
+        System time (seconds): 1.19
+        Percent of CPU this job got: 98%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 2:35.49
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 66076
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 31929
+        Voluntary context switches: 1667
+        Involuntary context switches: 305
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+    '''./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R2_001.fastq.gz -o 21_3G_R2 -r 101'''
+    User time (seconds): 140.94
+        System time (seconds): 1.21
+        Percent of CPU this job got: 100%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 2:20.79
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 65992
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 31295
+        Voluntary context switches: 1602
+        Involuntary context switches: 106
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+    '''./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R1_001.fastq.gz -o 34_4H_R1 -r 101'''
+     Command being timed: "./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R1_001.fastq.gz -o 34_4H_R1 -r 101"
+        User time (seconds): 137.87
+        System time (seconds): 1.31
+        Percent of CPU this job got: 100%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 2:18.66
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 66012
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 32065
+        Voluntary context switches: 1663
+        Involuntary context switches: 185
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+    '''./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R2_001.fastq.gz -o 34_4H_R2 -r 101'''
+    Command being timed: "./phredencoding.py -f /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R1_001.fastq.gz -o 34_4H_R1 -r 101"
+        User time (seconds): 137.87
+        System time (seconds): 1.31
+        Percent of CPU this job got: 100%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 2:18.66
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 66012
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 32065
+        Voluntary context switches: 1663
+        Involuntary context switches: 185
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+
+conda activate BGMP_QAA
+conda installed Trimmatoic, cutadapt YAY 
+-----------------
+Friday,Sep 8,2023
+-----------------
+I am going to try and run cut adapt on my files
+    Adapters:
+    R1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+    R2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+'''cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R1_001.fastq.gz -o 21_3G_R1.fastq'''
+'''cutadapt -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R2_001.fastq.gz -o 21_3G_R2.fastq'''
+
+'''cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R1_001.fastq.gz -o 34_4H_R1.fastq'''
+'''cutadapt -a AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R2_001.fastq.gz -o 34_4H_R2.fastq'''
+
+I AM WRONG.... i need to make sure its paired end!
+cutadapt -a ADAPTER_FWD -A ADAPTER_REV -o out.1.fastq -p out.2.fastq reads.1.fastq reads.2.fastq
+
+    '''cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+    -o 21_3G_R1.fastq -p 21_3G_R2.fastq \
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R1_001.fastq.gz  \
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R2_001.fastq.gz > cutadapt_21_4H.txt '''
+
+    srun --account=bgmp --partition=compute --time=3:00:00 --cpus-per-task 3  --pty bash
+
+    '''cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+    -o cut34_4H_R1.fastq -p cut34_4H_R2.fastq \
+     /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R1_001.fastq.gz \
+     /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R2_001.fastq.gz > cutadapt_34_4H.txt
+ What proportion of reads (both R1 and R2) were trimmed?
+21_3G
+Read 1 with adapter:                 613,874 (6.6%)
+Read 2 with adapter:                 679,275 (7.4%)
+34_4H
+Read 1 with adapter:                 819,166 (9.1%)
+Read 2 with adapter:                 886,595 (9.8%)
+        '''trimmomatic PE -phred33 ../21_3G_R1.fastq ../21_3G_R2.fastq /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/saved_21_3G_R1.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/deleted_21_3G_R1.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/saved_21_3G_R2.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/deleted_21_3G_R2.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35'''
+    Input Read Pairs: 9237299 Both Surviving: 8853312 (95.84%) Forward Only Surviving: 335058 (3.63%) Reverse Only Surviving: 6909 (0.07%) Dropped: 42020 (0.45%)
+TrimmomaticPE: Completed successfully
+        '''trimmomatic PE -phred33 ../cut34_4H_R1.fastq ../cut34_4H_R1.fastq /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/saved_34_4H_R1.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/deleted_34_4H_R1.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/saved_34_4H_R2.fastq.gz /projects/bgmp/klindley/bioinfo/Bi623/QAA/trimmed/deleted_34_4H_R2.fastq.gz LEADING:3 TRAILING:3 SLIDINGWINDOW:5:15 MINLEN:35'''
+    Multiple cores found: Using 3 threads
+Input Read Pairs: 9040597 Both Surviving: 9012089 (99.68%) Forward Only Surviving: 0 (0.00%) Reverse Only Surviving: 0 (0.00%) Dropped: 28508 (0.32%)
+TrimmomaticPE: Completed successfully
+
+I moved things around to organize my files in QAA 
+NOW TO WRITE THE PYTHON SCRIPT FOR PART TWO TO Plot the trimmed read length distributions for both R1 and R2 reads
+    
+        /projects/bgmp/shared/2017_sequencing/demultiplexed/34_4H_both_S24_L008_R2_001.fastq.gz
+RUN trimmomatic.sh 
+
+for length distribution 
+    gzcat trimmed_reads.fq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n
+
+gzcat trimmed/saved_21_3G_R1.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_213G_R1.txt
+
+zcat trimmed/saved_21_3G_R2.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_213G_R2.txt
+ 
+zcat trimmed/saved_34_4H_R1.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_344H_R1.txt
+
+  zcat trimmed/saved_34_4H_R2.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_344H_R2.txt
+
+
+I want to rerun cutadapt and trimmomatic this weekend to make sure I have the right output files, then do the length then plot em! 
+---------------
+Sep, 11, 2023
+--------------
+I am going to try and run cut adapt on my files
+    Adapters:
+    R1: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+    R2: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+srun --account=bgmp --partition=compute --time=3:00:00 --cpus-per-task 3  --pty bash
+conda activate BGMP_QAA
+'''cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCA -A AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT \
+    -o 21_3G_R1.fastq -p 21_3G_R2.fastq \
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R1_001.fastq.gz  \
+    /projects/bgmp/shared/2017_sequencing/demultiplexed/21_3G_both_S15_L008_R2_001.fastq.gz > cutadapt_21_4H.txt '''
+I am rerunning my trimomatic on everything to make sure my outputs are correct. I used the trimmomatic.sh. 
+Then i will rerun the command below to get the length distribution 
+'''zcat trimmed/saved_21_3G_R1.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_213G_R1.txt'''
+'''zcat trimmed/saved_21_3G_R2.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_213G_R2.txt'''
+'''zcat trimmed/saved_34_4H_R1.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_344H_R1.txt'''
+'''zcat trimmed/saved_34_4H_R2.fastq.gz | grep "^@" -A1 | grep -v "^@" | grep -v "^@" | grep -v "^--" | awk '{print length($0)}' | sort | uniq -c | sort -n > len_344H_R2.txt'''
+Going to figure out distribution later... I am now trying to install the following
+conda install star
+conda install numpy
+conda install matplotlib or conda install -c conda-forge matplotlib
+conda install htseq
+
+I made a script called length.distribution.py to graph my graphs. Now onto PART3
+
+I made a slurm script called , database.sh to create my database
+'''sbatch database.sh '''
+I made a slurm script called, alignment.sh to create my database
+    Will need to run on both 21_3G and 34_4H
+
+#!/bin/bash
+#SBATCH --account=bgmp                    #REQUIRED: which account to use
+#SBATCH --partition=interactive               #REQUIRED: which partition to use
+#SBATCH --mail-type=ALL                   #optional: must set email first, what type of email you want
+#SBATCH --cpus-per-task=8                 #optional: number of cpus, default is 1
+#SBATCH --mem=32GB                        #optional: amount of memory, default is 4GB
+
+
+
+For /projects/bgmp/klindley/bioinfo/Bi623/QAA/alignment/21_3G_QAAAligned.out.sam
+Mapped reads are: 17061162
+Unmapped reads are: 645462
+for /projects/bgmp/klindley/bioinfo/Bi623/QAA/alignment/34_4H_QAAAligned.out.sam
+Mapped reads are: 16822690
+Unmapped reads are: 483592
+
+
+For the third part, htseq I need to get info out of the file tmrw ... get bash commands from ross 
+     Slurm to investigate 56080
+------------
+Sep 12, 2023
+------------
+I had to rerun my htseq bc i had things in the wrong order... I outputed everything into their own gene count files
+    21_3G_fw.genecount
+    21_3G_rv.genecount
+    33_4H_fw.genecount
+    33_4H_rv.genecount
+I am now going to use these bash commands  
+1. to sum the number of features that map to a read 
+'''awk '{sum+=$2} END {print sum}'  filehandle'''
+2.Calc the total number of reads
+'''cat filehandle | awk '$2>0 {sum+=$2} END {print sum}'``` 
+Determine the percentage of reads mapped by dividing the number of mapping reads by the total number of reads. (feel free to use a calculator, remember to report a percentage)
+#1/#2 
+
+
+21_3G
+reads mapped, fw: 334465
+reads mappes, rv: 7180828
+
+total reads, fw: 8853312
+total reads. rv: 8853312
+
+Percentage of reads that mapped to a feauture 
+fw:(334465/8853312)*100 = 3.78%
+rv:(7180828/8853312)*100 = 81.11%
+
+34_4H 
+reads mapped, fw: 476301
+reads mapped, rv: 7214090
+
+total reads, fw:8653141
+total reads, rv:8653141
+
+Percentage of reads that mapped to a feature
+
+21_3G
+fw = 3.78%
+rv = 81.11%
+
+34_4H
+fw = 5.50%
+rv = 83.37%
+
+
+strnaded=Reverse yes its stranded but its reversed 
+
+using the argument --stranded=yes 
+using the --stranded=reverse 
+
+In htseq, there is an arugment -stranded and there are three options. The no argument would tell me wether or not it aligned to anything ever
+egardless of whether it is mapped to the same or the opposite strand as the feature. Using the arugment yes, if it maps for a paired end read, then the first read has to be on the same strand and the second read on the opposite strand. Using the arugment reverse, the rules are the opposite of the yes argument. The files i got from stranded=yes only mapped to 5.5% and the results from stradned=reverse mapped to 83.37% indicating that it is stranded. 
+
+In HTSeq, the '-stranded' argument offers three options. When used without an argument, it informs us whether a read has aligned to any feature, regardless of whether it aligns to the same or opposite strand. If we specify 'stranded=yes' as the argument, it implies that for a paired-end read to be counted, the first read must align to the same strand as the feature, while the second read must align to the opposite strand. Conversely, when we use 'stranded=reverse' as the argument, the rules are inverted compared to 'stranded=yes.'
+
+An analysis of the files using 'stranded=yes' revealed that only 3.78% (21_3G), 5.5% (34_4H) of the reads mapped accordingly, while 'stranded=reverse' resulted in 81.11% (21_3G), 83.37% (34_4H) of reads mapping in a stranded manner.
